@@ -1,4 +1,4 @@
-package ridickle.yapp.co.kr.toycalendar
+package yapp.toycalendar.co.kr.toycalendar
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
