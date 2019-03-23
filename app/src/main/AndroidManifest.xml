@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="yapp.co.kr.toycalendar.MainActivity"></activity>
         <activity
             android:name="yapp.co.kr.toycalendar.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
