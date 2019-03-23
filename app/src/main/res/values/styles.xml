@@ -16,5 +16,23 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!--<item name="android:fontFamily">@font/default_font</item>-->
     </style>
+    <style name="PickerTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:editTextStyle">@style/PickerEditText</item>
+    </style>
 
+    <style name="PickerEditText" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MyDatePickerSpinnerStyle" parent="@android:style/Widget.Material.DatePicker">
+        <item name="colorControlNormal">#d50000</item>
+        <item name="android:calendarTextColor">#00d500</item>
+        <item name="android:editTextStyle">@style/PickerEditText</item>
+
+    </style>
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.DatePicker">
+        <item name="android:colorControlActivated">#ffea00</item>
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:calendarViewShown">false</item>
+    </style>
 </resources>
