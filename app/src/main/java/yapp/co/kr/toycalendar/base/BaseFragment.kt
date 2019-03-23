@@ -13,7 +13,7 @@ abstract class BaseFragment : Fragment() {
     abstract val layoutRes: Int
     open val isUseDataBinding: Boolean = false
     var activity: BaseActivity? = null
-    lateinit var dialog: BaseDialog
+    lateinit var dialog: DefaultDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (layoutRes != 0) {
@@ -30,34 +30,8 @@ abstract class BaseFragment : Fragment() {
         return null
     }
 
-    // TODO 토의 내용1. onAttach / onDetach 작업을 Base에서 진행해주는 것이 맞는가?
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        activity = getActivity() as BaseActivity
-        afterOnAttach(context)
-    }
-
-    // attach 이후 작업할 내용
-    open fun afterOnAttach(context: Context){
-
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        activity = null
-
-        afterOnDetach()
-    }
-
-    // detach 이후 작업할 내용
-    open fun afterOnDetach(){
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dialog = BaseDialog(view.context)
 
         setupViews(view)
         subscribeUI()
@@ -67,23 +41,26 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun subscribeUI()
 
-    // 다이얼로그 띄워주기
+    // 다이얼로그 설정
     fun openDialog(
-        type: Int,
-        message: String,
-        layoutRes: Int,
-        okListener: View.OnClickListener = View.OnClickListener {
-            dialog.dismiss()
-        },
-        cancelListener: View.OnClickListener = View.OnClickListener {
-            dialog.dismiss()
-        }
+            context: Context,
+            type: Int,
+            message: String,
+            layoutRes: Int,
+            okListener: () -> Unit = {
+                dialog.dismiss()
+            },
+            cancelListener: () -> Unit = {
+                dialog.dismiss()
+            }
     ) {
+        dialog = DefaultDialog(context, okListener, cancelListener)
+        // 초기 설정
         dialog.setInit(layoutRes, type)
+
         dialog.setTitle(message)
-        dialog.setOkButtonListener(okListener)
-        dialog.setCancelButtonListener(cancelListener)
 
         dialog.callFunction()
     }
+
 }

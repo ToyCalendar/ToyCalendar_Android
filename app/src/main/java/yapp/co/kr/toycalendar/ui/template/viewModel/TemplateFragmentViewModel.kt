@@ -2,7 +2,7 @@ package yapp.co.kr.toycalendar.ui.template.viewModel
 
 import android.app.Application
 import androidx.databinding.ObservableField
-import yapp.co.kr.toycalendar.BaseViewModel
+import yapp.co.kr.toycalendar.base.BaseViewModel
 
 class TemplateFragmentViewModel(app: Application) : BaseViewModel(app) {
     var tv_hello_index : ObservableField<Int>? = null

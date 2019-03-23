@@ -7,10 +7,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import yapp.co.kr.toycalendar.BaseFragment
+import yapp.co.kr.toycalendar.base.BaseFragment
 import yapp.co.kr.toycalendar.ui.template.viewModel.TemplateFragmentViewModel
 import yapp.toycalendar.co.kr.toycalendar.R
-import yapp.toycalendar.co.kr.toycalendar.databinding.FragmentTemplateBinding
 
 class TemplateFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_template
@@ -18,7 +17,7 @@ class TemplateFragment : BaseFragment() {
     private val templateFragmentVM : TemplateFragmentViewModel by lazy {
         ViewModelProviders.of(this).get(TemplateFragmentViewModel::class.java)
     }
-    private lateinit var binding: FragmentTemplateBinding
+    private lateinit var binding: yapp.toycalendar.co.kr.toycalendar.databinding.FragmentTemplateBinding
 
     override fun onDataBinding(inflater: LayoutInflater, container: ViewGroup?): View? {
         binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
@@ -28,7 +27,7 @@ class TemplateFragment : BaseFragment() {
     }
 
     override fun setupViews(view: View) {
-        view?.apply {
+        view.apply {
 
         }
     }

@@ -1,6 +1,7 @@
 package yapp.co.kr.toycalendar.base
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -13,6 +14,13 @@ abstract class BaseRecyclerView {
             private val bindingVariableId: Int? = null
     ) : RecyclerView.Adapter<Adapter.ViewHolder<B>>() {
         private val items = mutableListOf<ITEM>()
+
+        var a : View ? =null
+        override fun onViewRecycled(holder: ViewHolder<B>) {
+            super.onViewRecycled(holder)
+            //memory leak 방지
+            a?.setOnClickListener(null)
+        }
 
         // Create (All)
         fun replaceAll(items: List<ITEM>?) {
@@ -92,6 +100,7 @@ abstract class BaseRecyclerView {
             }
         }
     }
+
 }
 
 // 사용 예
