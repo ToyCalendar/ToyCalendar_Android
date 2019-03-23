@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import buv.co.kr.base.BaseFragment
+import yapp.co.kr.toycalendar.BaseFragment
 import yapp.co.kr.toycalendar.ui.template.viewModel.TemplateFragmentViewModel
 import yapp.toycalendar.co.kr.toycalendar.R
 import yapp.toycalendar.co.kr.toycalendar.databinding.FragmentTemplateBinding

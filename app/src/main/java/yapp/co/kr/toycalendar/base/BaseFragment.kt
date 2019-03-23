@@ -1,4 +1,4 @@
-package buv.co.kr.base
+package yapp.co.kr.toycalendar.base
 
 import android.content.Context
 import android.os.Bundle

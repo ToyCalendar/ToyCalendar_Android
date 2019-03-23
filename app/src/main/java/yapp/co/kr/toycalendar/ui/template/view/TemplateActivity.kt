@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import buv.co.kr.base.BaseActivity
+import yapp.co.kr.toycalendar.BaseActivity
 import yapp.co.kr.toycalendar.LoginActivity
 import yapp.co.kr.toycalendar.ui.template.viewModel.TemplateViewModel
 import yapp.toycalendar.co.kr.toycalendar.R
