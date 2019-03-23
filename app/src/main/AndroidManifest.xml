@@ -9,13 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name="yapp.co.kr.toycalendar.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name="yapp.co.kr.toycalendar.ui.template.view.TemplateActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name="yapp.co.kr.toycalendar.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
