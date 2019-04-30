@@ -4,11 +4,11 @@ import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import yapp.co.kr.toycalendar.LoginActivity
 import yapp.co.kr.toycalendar.base.BaseActivity
+import yapp.co.kr.toycalendar.ui.login.view.LoginActivity
 import yapp.co.kr.toycalendar.ui.template.viewModel.TemplateViewModel
-import yapp.toycalendar.co.kr.toycalendar.R
-import yapp.toycalendar.co.kr.toycalendar.databinding.ActivityTemplateBinding
+import yapp.co.kr.toycalendar.R
+import yapp.co.kr.toycalendar.databinding.ActivityTemplateBinding
 
 class TemplateActivity : BaseActivity(){
     override val layoutRes = R.layout.activity_template

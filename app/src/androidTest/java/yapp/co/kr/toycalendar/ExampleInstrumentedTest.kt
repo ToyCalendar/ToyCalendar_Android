@@ -1,4 +1,4 @@
-package yapp.toycalendar.co.kr.toycalendar
+package yapp.co.kr.toycalendar
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("ridickle.yapp.co.kr.toycalendar", appContext.packageName)
+        assertEquals("yapp.co.kr.toycalendar", appContext.packageName)
     }
 }

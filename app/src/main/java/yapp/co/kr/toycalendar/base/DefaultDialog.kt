@@ -7,7 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.Window
 import kotlinx.android.synthetic.main.base_dialog.*
-import yapp.toycalendar.co.kr.toycalendar.R
+import yapp.co.kr.toycalendar.R
 
 class DefaultDialog(context: Context, private val ok : () -> Unit, private val  cancel : () -> Unit) : Dialog(context) {
     fun callFunction() {

@@ -1,4 +1,4 @@
-package yapp.toycalendar.co.kr.toycalendar
+package yapp.co.kr.toycalendar
 
 import org.junit.Test
 

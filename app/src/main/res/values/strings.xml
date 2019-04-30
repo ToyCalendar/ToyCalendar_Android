@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ToyCalendar</string>
+    <!-- ... -->
+    <string name="default_web_client_id" translatable="false">625173617633-as3vda3svgruibi8mgr031hq3pq3g8u0.apps.googleusercontent.com</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">ToyCalendar</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
 </resources>

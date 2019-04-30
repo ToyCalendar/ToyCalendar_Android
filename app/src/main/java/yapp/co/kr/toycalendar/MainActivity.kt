@@ -1,8 +1,7 @@
 package yapp.co.kr.toycalendar
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import yapp.toycalendar.co.kr.toycalendar.R
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
