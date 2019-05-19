@@ -12,8 +12,9 @@ import yapp.toycalendar.co.kr.toycalendar.R
 
 class MonthGridAdapter(val context :Context) : BaseAdapter (){
 
-    var days = listOf<Day>()
+    private var days = listOf<Day>()
     private var dayViewHolder : DayViewHolder?=null
+    val onDayClicked: ToyRxEvent<DayClickedEvent> = ToyRxEvent.create()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertedView = convertView
@@ -25,6 +26,7 @@ class MonthGridAdapter(val context :Context) : BaseAdapter (){
             dayViewHolder = convertedView.tag as DayViewHolder
         }
 //        val convertedView= convertView ?: inflater.inflate(R.layout.calendar_layout_day_view, parent, false)
+        dayViewHolder?.onBind()
 
         return convertedView
     }
@@ -40,6 +42,11 @@ class MonthGridAdapter(val context :Context) : BaseAdapter (){
         days = updatedDays
         notifyDataSetChanged()
     }
-
-    internal inner class DayViewHolder(val dayView: DayView)
+    internal inner class DayViewHolder(val dayView: DayView){
+        fun onBind(){
+            dayView.setOnDayClickListener{
+                onDayClicked.send(DayClickedEvent(it))
+            }
+        }
+    }
 }

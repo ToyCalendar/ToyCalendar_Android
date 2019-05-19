@@ -3,7 +3,6 @@ package yapp.co.kr.toycalendar.calendar.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.GridLayout
 import android.widget.GridView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -12,9 +11,11 @@ import io.reactivex.disposables.Disposable
 import yapp.co.kr.toycalendar.calendar.DaysUpdatedEvent
 import yapp.co.kr.toycalendar.calendar.MonthGridAdapter
 import yapp.co.kr.toycalendar.calendar.MonthViewModel
+import yapp.co.kr.toycalendar.calendar.BaseCalendar
+import yapp.co.kr.toycalendar.calendar.entity.Day
 import yapp.toycalendar.co.kr.toycalendar.R
 
-class MonthView : LinearLayout {
+class MonthView : LinearLayout , BaseCalendar {
 
     constructor(context: Context) : this(context, null)
 
@@ -56,18 +57,21 @@ class MonthView : LinearLayout {
         disposables = null
     }
 
-    fun updateViews(){
+    private fun updateViews(){
         monthViewModel?.let{
             it.daysUpdateEvent.subscribe (this::onDaysUpdateEvent).addToDisposables()
             it.getDays()
         }
+    }
 
 
+    override fun setOnDayClickListener(onClick: (Day) -> Unit) {
+        monthGridAdapter?.onDayClicked?.subscribe{
+            onClick(it.day)
+        }?.addToDisposables()
     }
 
     private fun onDaysUpdateEvent(daysUpdateEvent : DaysUpdatedEvent){
         monthGridAdapter?.updateDays(daysUpdateEvent.days)
     }
-
-
 }

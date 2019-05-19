@@ -1,6 +1,8 @@
 package yapp.co.kr.toycalendar
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import yapp.co.kr.toycalendar.calendar.MonthType
 import yapp.co.kr.toycalendar.calendar.MonthViewModel
@@ -13,5 +15,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val monthView = findViewById<MonthView>(R.id.month_view)
         monthView.setViewModel(MonthViewModel(2019, 5, MonthType.MyCalendar))
+        monthView.setOnDayClickListener{
+            Toast.makeText(applicationContext,"${it.day}" +
+                    "${it.ovulationCycleYn}"+
+                    "${it.ovulationDayYn}"+
+                    "${it.ovulationEndYn}"+
+                    "${it.ovulationStartYn}"+
+                    "${it.physiologyCycleYn}"+
+                    "${it.physiologyEndYn}"+
+                    "${it.physiologyStartYn}",Toast.LENGTH_SHORT).show()
+        }
     }
 }

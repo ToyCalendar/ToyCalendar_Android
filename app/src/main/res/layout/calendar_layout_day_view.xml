@@ -5,7 +5,9 @@
     android:padding="10dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:background="?android:attr/selectableItemBackground"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- android:background="?android:attr/selectableItemBackground" setOnclickListener와 함꼐 ripple울 보여주고싶을 떄넣어주자 -->
 
     <TextView
         android:id="@+id/day_title"
