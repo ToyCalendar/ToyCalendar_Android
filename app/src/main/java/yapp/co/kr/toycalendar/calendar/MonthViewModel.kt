@@ -37,9 +37,6 @@ class MonthViewModel( year: Int, month: Int, val type : MonthType){
         var day = 1
         var dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
 
-        //create Before EmptyDays
-        for (i in 0 until firstDayOfMonth) list.add(Day(0,0,0,0,true))
-
         //create Days
         for (i in 0 until numOfDays) {
             val year = calendar.get(Calendar.YEAR)
@@ -51,9 +48,18 @@ class MonthViewModel( year: Int, month: Int, val type : MonthType){
             if (dayOfWeek > 7) dayOfWeek -= 7
         }
 
+        //create Before EmptyDays
+        for (i in 0 until firstDayOfMonth) list.add(0,Day(0,0,0,0,true).apply{
+            if(list[0].physiologyEndYn || list[0].physiologyCycleYn) physiologyCycleYn = true
+            if(list[0].ovulationEndYn || list[0].ovulationCycleYn) ovulationCycleYn = true
+        })
+
         //create After EmptyDays
         list.last().dayOfWeek.let {
-            for (i in 0 until 7 - it) list.add(Day(0,0,0,0,true))
+            for (i in 0 until 7 - it) list.add(Day(0,0,0,0,true).apply{
+                if(list[list.lastIndex].physiologyStartYn || list[list.lastIndex].physiologyCycleYn) physiologyCycleYn = true
+                if(list[list.lastIndex].ovulationStartYn || list[list.lastIndex].ovulationCycleYn) ovulationCycleYn = true
+            })
         }
         return list
     }

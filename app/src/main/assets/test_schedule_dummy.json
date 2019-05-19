@@ -4,6 +4,25 @@
   "data" : {
     "mySelf" : [
       {
+        "date" : "20190501",
+        "sexYn" : true, // - 섹스 여부
+        "deviceUseYn" : false, // true: 사용, false: 미사용 - 기구 사용 여부
+        "secretInfoList" : [ // 있는 것만 체크
+          {
+            "secretInfoCode" : "code", // 민감정보 코드
+            "secretInfoName" : "건조" // 민감정보 내용 (많음, 치즈 등)
+          }
+        ],
+        "physiologyCycleYn": false, // true : 생리주기 있음 false: 없음 - 생리주기여부
+        "physiologyStartYn": false, // true : 생리 시작일 (둥글게 표시) - 생리시작일여부
+        "physiologyEndYn": false, // true : 생리 종료일 (둥글게 표시) - 생리종료일여부
+        "ovulationCycleYn":false, //nullable - 배란주기 여부
+        "ovulationDayYn": false, //nullable - 배란일 여부
+        "ovulationStartYn": false, //- 배란 시작 여부 (둥글게 표시)
+        "ovulationEndYn": true, //- 배란 종료 여부 (둥글게 표시)
+        "dayPoint": 1 // 현재 : 0, 과거 : 1, 미래 : 2 - 시점
+      },
+      {
         "date" : "20190504",
         "sexYn" : true, // - 섹스 여부
         "deviceUseYn" : false, // true: 사용, false: 미사용 - 기구 사용 여부
