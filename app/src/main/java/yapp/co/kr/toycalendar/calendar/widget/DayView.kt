@@ -6,13 +6,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import yapp.co.kr.toycalendar.calendar.entity.Day
 import yapp.toycalendar.co.kr.toycalendar.R
 
@@ -85,36 +84,44 @@ class DayView : LinearLayout {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        if(circleSize ==0f) circleSize = (title.bottom - title.top) / 2.toFloat()
-        when {
-            mDay.physiologyStartYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(),circleSize , type1Color)
-                canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type1Color)
-            }
-            mDay.physiologyEndYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
-                canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type1Color)
+        circleSize = (title.bottom - title.top) / 2.toFloat()
 
-            }
-            mDay.physiologyCycleYn -> {
-                canvas?.drawRect(Rect(0, title.top, width, title.bottom), type1Color)
+        if (mDay.physiologyStartYn || mDay.physiologyEndYn || mDay.physiologyCycleYn || mDay.ovulationStartYn || mDay.ovulationEndYn || mDay.ovulationCycleYn || mDay.isClicked) {
+            title.setTextColor(ContextCompat.getColor(context, R.color.white))
+            when {
+                mDay.physiologyStartYn -> {
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
+                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type1Color)
+                }
+                mDay.physiologyEndYn -> {
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
+                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type1Color)
 
+                }
+                mDay.physiologyCycleYn -> {
+                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), type1Color)
+
+                }
+                mDay.ovulationStartYn -> {
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
+                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type2Color)
+                }
+                mDay.ovulationEndYn -> {
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
+                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type2Color)
+                }
+                mDay.ovulationCycleYn -> {
+                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), type2Color)
+                }
             }
-            mDay.ovulationStartYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
-                canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type2Color)
+
+            if (mDay.isClicked) {
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize - 6, type3Color)
             }
-            mDay.ovulationEndYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
-                canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type2Color)
-            }
-            mDay.ovulationCycleYn -> {
-                canvas?.drawRect(Rect(0, title.top, width, title.bottom), type2Color)
-            }
+        }else{
+            title.setTextColor(ContextCompat.getColor(context, R.color.black))
         }
-        if (mDay.isClicked) {
-            canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize-10, type3Color)
-        }
+
 
     }
 
