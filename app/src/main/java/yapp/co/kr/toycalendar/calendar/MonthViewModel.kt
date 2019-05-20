@@ -2,22 +2,26 @@ package yapp.co.kr.toycalendar.calendar
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import yapp.co.kr.toycalendar.calendar.data.CalendarRepositoryImpl
+import yapp.co.kr.toycalendar.calendar.domain.repository.CalendarRepository
 import yapp.co.kr.toycalendar.calendar.domain.usecase.GetSchedules
 import yapp.co.kr.toycalendar.calendar.entity.Day
+import yapp.co.kr.toycalendar.calendar.entity.MonthData
 import yapp.co.kr.toycalendar.calendar.entity.Schedule
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MonthViewModel(val year: Int,val month: Int, val type : MonthType){
-    private val calendar = GregorianCalendar(year, month -1, 1)
+class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRepository){
+    constructor(monthData : MonthData) : this(monthData,CalendarRepositoryImpl.INSTANCE)
+
+    private val calendar = GregorianCalendar(monthData.year, monthData.month -1, 1)
     private val monthFormat = SimpleDateFormat("yyyyMMdd",Locale.getDefault()).format(calendar.time)
 
-    private val getSchedules = GetSchedules(CalendarRepositoryImpl(), AndroidSchedulers.mainThread())
+    private val getSchedules = GetSchedules(calendarRepository, AndroidSchedulers.mainThread())
 
     val daysUpdateEvent: ToyRxEvent<DaysUpdatedEvent> = ToyRxEvent.create()
 
     fun getDays() {
-        getSchedules(monthFormat,type,{
+        getSchedules(monthFormat,monthData.monthType,{
             daysUpdateEvent.send(DaysUpdatedEvent(createDays(it)))
         },{
 

@@ -49,7 +49,7 @@ class MonthView : LinearLayout , BaseCalendar {
 
     fun setViewModel(monthViewModel: MonthViewModel){
         this.monthViewModel = monthViewModel
-        headerTitle.text = monthViewModel.month.toString()
+        headerTitle.text = monthViewModel.monthData.month.toString()
         updateViews()
     }
     fun clearViewModel(){
