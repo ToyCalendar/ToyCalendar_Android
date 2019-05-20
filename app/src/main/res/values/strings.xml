@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ToyCalendar</string>
+    <string name="physiology_cycle">생리기간</string>
+    <string name="ovulation_cycle">배란기간</string>
 </resources>
