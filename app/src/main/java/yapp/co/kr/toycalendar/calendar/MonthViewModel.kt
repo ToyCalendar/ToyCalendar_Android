@@ -8,16 +8,16 @@ import yapp.co.kr.toycalendar.calendar.entity.Schedule
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MonthViewModel( year: Int, month: Int, val type : MonthType){
+class MonthViewModel(val year: Int,val month: Int, val type : MonthType){
     private val calendar = GregorianCalendar(year, month -1, 1)
-    private val month = SimpleDateFormat("yyyyMMdd",Locale.getDefault()).format(calendar.time)
+    private val monthFormat = SimpleDateFormat("yyyyMMdd",Locale.getDefault()).format(calendar.time)
 
     private val getSchedules = GetSchedules(CalendarRepositoryImpl(), AndroidSchedulers.mainThread())
 
     val daysUpdateEvent: ToyRxEvent<DaysUpdatedEvent> = ToyRxEvent.create()
 
     fun getDays() {
-        getSchedules(month,type,{
+        getSchedules(monthFormat,type,{
             daysUpdateEvent.send(DaysUpdatedEvent(createDays(it)))
         },{
 
