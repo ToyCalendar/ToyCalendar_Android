@@ -4,11 +4,8 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
 import yapp.co.kr.toycalendar.calendar.entity.Day
 import yapp.co.kr.toycalendar.calendar.widget.DayView
-import yapp.toycalendar.co.kr.toycalendar.R
 
 class MonthGridAdapter(val context :Context) : BaseAdapter (){
 
@@ -46,7 +43,14 @@ class MonthGridAdapter(val context :Context) : BaseAdapter (){
         fun onBind(){
             dayView.setOnDayClickListener{
                 onDayClicked.send(DayClickedEvent(it))
+                onDayClicked(it)
             }
         }
+    }
+    private fun onDayClicked(day: Day){
+        days.forEach{
+            it.isClicked = it == day
+        }
+        notifyDataSetChanged()
     }
 }

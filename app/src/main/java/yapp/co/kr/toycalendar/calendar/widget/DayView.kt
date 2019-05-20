@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -22,6 +23,7 @@ class DayView : LinearLayout {
     private lateinit var isSecretion: ImageView
     private lateinit var itemView: LinearLayout
     private lateinit var mDay: Day
+    private var circleSize = 0f
     private var type1Color = Paint().apply {
         color = Color.parseColor("#ff5354")
 
@@ -29,7 +31,9 @@ class DayView : LinearLayout {
     private var type2Color = Paint().apply {
         color = Color.parseColor("#6147fb")
     }
-
+    private var type3Color = Paint().apply {
+        color = Color.parseColor("#000000")
+    }
 
     constructor(context: Context, day: Day) : this(context, null, day)
 
@@ -47,7 +51,6 @@ class DayView : LinearLayout {
         isSecretion = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.black_dot)
         updateDay(day)
         setWillNotDraw(false) // For Draw in Viewgroup
-
     }
 
     private fun updateDay(day: Day) {
@@ -60,17 +63,11 @@ class DayView : LinearLayout {
             return
         }
         title.text = "${day.day}"
-
         isRelationShip.visibility = if (day.sexYn) View.VISIBLE else View.GONE
         isSecretion.visibility = if (day.secretInfoList.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
     fun getDay() = mDay
-
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        return super.dispatchTouchEvent(ev)
-
-    }
 
     fun setOnDayClickListener(onClicked: (Day) -> Unit) {
         if (mDay.isEmpty) {
@@ -88,13 +85,14 @@ class DayView : LinearLayout {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        if(circleSize ==0f) circleSize = (title.bottom - title.top) / 2.toFloat()
         when {
             mDay.physiologyStartYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), (title.bottom - title.top) / 2.toFloat(), type1Color)
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(),circleSize , type1Color)
                 canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type1Color)
             }
             mDay.physiologyEndYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), (title.bottom - title.top) / 2.toFloat(), type1Color)
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
                 canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type1Color)
 
             }
@@ -103,19 +101,21 @@ class DayView : LinearLayout {
 
             }
             mDay.ovulationStartYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), (title.bottom - title.top) / 2.toFloat(), type2Color)
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
                 canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type2Color)
-
             }
             mDay.ovulationEndYn -> {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), (title.bottom - title.top) / 2.toFloat(), type2Color)
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
                 canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type2Color)
             }
             mDay.ovulationCycleYn -> {
                 canvas?.drawRect(Rect(0, title.top, width, title.bottom), type2Color)
-
             }
         }
+        if (mDay.isClicked) {
+            canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize-10, type3Color)
+        }
+
     }
 
 }

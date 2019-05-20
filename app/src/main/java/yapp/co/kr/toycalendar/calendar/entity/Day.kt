@@ -19,6 +19,7 @@ class Day(val year: Int,
     var ovulationDayYn: Boolean = false
     var ovulationStartYn: Boolean = false
     var ovulationEndYn: Boolean = false
+    var isClicked: Boolean = false
 }
 
 /*
