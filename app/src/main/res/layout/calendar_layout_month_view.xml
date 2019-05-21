@@ -21,9 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <GridView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/days_view"
-        android:numColumns="7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -44,7 +44,6 @@ class DayView : LinearLayout {
 
     private fun initViews(context: Context, attrs: AttributeSet?, day: Day) {
         itemView = (LayoutInflater.from(context).inflate(R.layout.calendar_layout_day_view, this) as LinearLayout)
-        mDay = day
         title = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.day_title)
         isRelationShip = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.heart)
         isSecretion = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.black_dot)
@@ -52,16 +51,15 @@ class DayView : LinearLayout {
         setWillNotDraw(false) // For Draw in Viewgroup
     }
 
-    private fun updateDay(day: Day) {
-        if (day.isEmpty) {
-            if (day.ovulationCycleYn || day.physiologyCycleYn) {
-                itemView.visibility = View.VISIBLE
-            } else {
+    fun updateDay(day: Day) {
+        mDay =day
+        if (mDay.isEmpty && !mDay.ovulationCycleYn && !mDay.physiologyCycleYn) {
                 itemView.visibility = View.GONE
-            }
             return
         }
-        title.text = "${day.day}"
+
+        itemView.visibility = View.VISIBLE
+        title.text = if(day.day ==0) "" else "${day.day}"
         isRelationShip.visibility = if (day.sexYn) View.VISIBLE else View.GONE
         isSecretion.visibility = if (day.secretInfoList.isNotEmpty()) View.VISIBLE else View.GONE
     }

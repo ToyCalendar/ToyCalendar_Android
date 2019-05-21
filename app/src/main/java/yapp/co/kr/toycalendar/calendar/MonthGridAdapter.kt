@@ -1,56 +1,59 @@
 package yapp.co.kr.toycalendar.calendar
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.recyclerview.widget.RecyclerView
 import yapp.co.kr.toycalendar.calendar.entity.Day
 import yapp.co.kr.toycalendar.calendar.widget.DayView
+import yapp.toycalendar.co.kr.toycalendar.R
 
-class MonthGridAdapter(val context :Context) : BaseAdapter (){
+class MonthGridAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var days = listOf<Day>()
-    private var dayViewHolder : DayViewHolder?=null
-    val onDayClicked: ToyRxEvent<DayClickedEvent> = ToyRxEvent.create()
+    val onDayClickedEvent: ToyRxEvent<DayClickedEvent> = ToyRxEvent.create()
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var convertedView = convertView
-        if (convertedView == null) {
-            convertedView = DayView(context,days[position])
-            dayViewHolder = DayViewHolder(convertedView)
-            convertedView.tag = dayViewHolder
-        } else {
-            dayViewHolder = convertedView.tag as DayViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return DayViewHodler(DayView(parent.context,Day()))
+    }
+
+    override fun getItemCount() = days.size
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(holder is DayViewHodler){
+            holder.onBind(days[position],this::onDayClicked)
         }
-//        val convertedView= convertView ?: inflater.inflate(R.layout.calendar_layout_day_view, parent, false)
-        dayViewHolder?.onBind()
-
-        return convertedView
     }
 
 
-    override fun getItem(position: Int) = days[position]
+    fun getItem(position: Int) = days[position]
 
     override fun getItemId(position: Int) = position.toLong()
-
-    override fun getCount() = days.size
 
     fun updateDays(updatedDays: List<Day>) {
         days = updatedDays
         notifyDataSetChanged()
     }
-    internal inner class DayViewHolder(val dayView: DayView){
-        fun onBind(){
-            dayView.setOnDayClickListener{
-                onDayClicked.send(DayClickedEvent(it))
-                onDayClicked(it)
-            }
-        }
-    }
+
     private fun onDayClicked(day: Day){
+        onDayClickedEvent.send(DayClickedEvent(day))
+
         days.forEach{
             it.isClicked = it == day
         }
         notifyDataSetChanged()
+    }
+}
+
+class DayViewHodler(itemView: View) : RecyclerView.ViewHolder(itemView ) {
+    fun onBind(day : Day, onClicked : (Day) -> Unit){
+        if(itemView is DayView){
+            itemView.updateDay(day)
+            itemView.setOnDayClickListener{
+                onClicked(it)
+            }
+        }
     }
 }
