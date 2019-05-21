@@ -53,14 +53,14 @@ class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRep
         }
 
         //create Before EmptyDays
-        for (i in 0 until firstDayOfMonth) list.add(0,Day(0,0,0,0,true).apply{
+        for (i in 0 until firstDayOfMonth) list.add(0,Day().apply{
             if(list[0].physiologyEndYn || list[0].physiologyCycleYn) physiologyCycleYn = true
             if(list[0].ovulationEndYn || list[0].ovulationCycleYn) ovulationCycleYn = true
         })
 
         //create After EmptyDays
         list.last().dayOfWeek.let {
-            for (i in 0 until 7 - it) list.add(Day(0,0,0,0,true).apply{
+            for (i in 0 until 7 - it) list.add(Day().apply{
                 if(list[list.lastIndex].physiologyStartYn || list[list.lastIndex].physiologyCycleYn) physiologyCycleYn = true
                 if(list[list.lastIndex].ovulationStartYn || list[list.lastIndex].ovulationCycleYn) ovulationCycleYn = true
             })
@@ -70,7 +70,7 @@ class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRep
 
     //해당 날에 기타 정보들 입력.
     private fun createDay(year: Int, month: Int, day: Int, dayOfWeek: Int, schedule: Schedule?): Day {
-        val result = Day(year, month, day, dayOfWeek)
+        val result = Day(false, year, month, day, dayOfWeek)
         schedule?: return result
 
         result.sexYn = schedule.sexYn?: false

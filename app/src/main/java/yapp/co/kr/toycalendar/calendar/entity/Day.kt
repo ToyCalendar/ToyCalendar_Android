@@ -3,11 +3,11 @@ package yapp.co.kr.toycalendar.calendar.entity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Day(val year: Int,
-          val month: Int,
-          val day: Int,
-          val dayOfWeek: Int,
-          val isEmpty :Boolean = false){
+class Day(val isEmpty :Boolean = true,
+          val year: Int= 0,
+          val month: Int =0,
+          val day: Int =0,
+          val dayOfWeek: Int = 0){
 
     var sexYn: Boolean = false
     var deviceUseYn: Boolean = false
