@@ -12,6 +12,7 @@ import yapp.co.kr.toycalendar.R
 import yapp.co.kr.toycalendar.base.BaseActivity
 import yapp.co.kr.toycalendar.databinding.ActivityLoginBinding
 import yapp.co.kr.toycalendar.ui.login.viewModel.LoginViewModel
+import yapp.co.kr.toycalendar.util.LoginType
 import java.util.*
 
 
@@ -47,9 +48,9 @@ class LoginActivity : BaseActivity() {
 
     // ViewModel observe 처리
     override fun subscribeUI() {
-        loginVM.action.observe(this, Observer { action ->
+        loginVM.loginAction.observe(this, Observer { action ->
             when (action) {
-                "google" -> {
+                LoginType.GOOGLE -> {
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -71,8 +72,12 @@ class LoginActivity : BaseActivity() {
                     // finish()
                 }
 
-                "facebook" -> {
+                LoginType.FACEBOOK -> {
 
+                }
+                LoginType.LINE -> TODO()
+                LoginType.KAKAO -> TODO()
+                null -> {
                 }
             }
         })

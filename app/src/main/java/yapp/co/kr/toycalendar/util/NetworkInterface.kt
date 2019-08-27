@@ -9,6 +9,6 @@ open interface NetworkInterface {
     @POST("/login")
     fun postLogin(
         @Header("sns") sns: String,
-        @Header("key") key: String): Single<DEFAULT_RESPONSE>
+        @Header("key") key: String): Single<LoginType>
 
 }
