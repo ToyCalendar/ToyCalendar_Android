@@ -21,10 +21,10 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
         loginAction.value = null
         loginObservable.set(null)
 
-        GetSchedules(CalendarRepositoryImpl(), Schedulers.io()).invoke("",
-                { list -> System.out.println(list) },
-                { throwable -> System.out.println(throwable) },
-                false)
+        // GetSchedules(CalendarRepositoryImpl(), Schedulers.io()).invoke("",
+        //         { list -> System.out.println(list) },
+        //         { throwable -> System.out.println(throwable) },
+        //         false)
 
         auth = FirebaseAuth.getInstance()
     }
