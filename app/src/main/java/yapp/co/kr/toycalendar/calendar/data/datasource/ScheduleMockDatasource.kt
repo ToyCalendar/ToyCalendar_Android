@@ -2,6 +2,7 @@ package yapp.co.kr.toycalendar.calendar.data.datasource
 
 import com.google.gson.Gson
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import yapp.co.kr.toycalendar.App
 import yapp.co.kr.toycalendar.calendar.entity.Schedule
 import yapp.co.kr.toycalendar.calendar.entity.ScheduleResult
@@ -14,10 +15,10 @@ class ScheduleMockDatasource : ScheduleDataSource {
     private val scheduleResultFileName = "test_schedule_dummy.json"
     override fun getSchedule(monthList: List<String>): Single<ScheduleResult> {
         return Single.create<ScheduleResult> {
-            it.onSuccess(getFilteredInfo(monthList,Gson().fromJson(
-                    InputStreamReader(App.getApp()!!.assets.open(scheduleResultFileName)),
-                    ScheduleResult::class.java)))
-        }.subscribeOn(io.reactivex.schedulers.Schedulers.io())
+            val isr = InputStreamReader(App.getApp()!!.assets.open(scheduleResultFileName))
+            val result = Gson().fromJson(isr,ScheduleResult::class.java)
+            it.onSuccess(result)
+        }.subscribeOn(Schedulers.io())
     }
 
     private fun getFilteredInfo(monthList: List<String>, scheduleResult: ScheduleResult): ScheduleResult {
@@ -44,5 +45,4 @@ class ScheduleMockDatasource : ScheduleDataSource {
         }
         return ScheduleResult(list)
     }
-
 }

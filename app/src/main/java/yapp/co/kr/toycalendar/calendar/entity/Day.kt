@@ -1,15 +1,25 @@
 package yapp.co.kr.toycalendar.calendar.entity
 
-class Day(val year: Int,
-          val month: Int,
-          val day: Int,
-          val dayOfWeek: Int){
-    var physiology: ScheduleDrawType = ScheduleDrawType.NONE
-    var physiologyInSchedule: ScheduleDrawType = ScheduleDrawType.NONE
-    var ovulation: ScheduleDrawType = ScheduleDrawType.NONE
-    var ovulationInSchedule: ScheduleDrawType= ScheduleDrawType.NONE
-    var isRelationShip : Boolean =false
-    var isSecretion : Boolean = false
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+class Day(val isEmpty :Boolean = true,
+          val year: Int= 0,
+          val month: Int =0,
+          val day: Int =0,
+          val dayOfWeek: Int = 0){
+
+    var sexYn: Boolean = false
+    var deviceUseYn: Boolean = false
+    var secretInfoList: List<SecretInfo?> = emptyList()
+    var physiologyCycleYn: Boolean = false
+    var physiologyStartYn: Boolean = false
+    var physiologyEndYn: Boolean = false
+    var ovulationCycleYn: Boolean = false
+    var ovulationDayYn: Boolean = false
+    var ovulationStartYn: Boolean = false
+    var ovulationEndYn: Boolean = false
+    var isClicked: Boolean = false
 }
 
 /*
