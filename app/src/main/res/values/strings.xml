@@ -6,4 +6,5 @@
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">ToyCalendar</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+    <string name="partner_init">파트너가 생성한\\n연동 코드를 정확히 입력해주세요.</string>
 </resources>

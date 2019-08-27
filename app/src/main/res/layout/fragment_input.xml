@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="yapp.co.kr.toycalendar.ui.partner.InputFragment" />
+
+        <variable
+            name="inputVM"
+            type="yapp.co.kr.toycalendar.ui.partner.InputViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:context=".ui.partner.PartnerActivity">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/double_margin"
+            android:gravity="center"
+            android:text="@{inputVM.message}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="파트너가 생성한\n연동 코드를 정확히 입력해주세요." />
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/single_margin"
+            android:layout_marginTop="@dimen/double_margin"
+            android:background="#e8ecf0"
+            android:gravity="center"
+            android:hint="연동 코드를 입력해주세요"
+            android:inputType="number"
+            android:onTextChanged="@{(s, start, count, after)->inputVM.checkCode()}"
+            android:padding="@dimen/single_margin"
+            android:text="@={inputVM.code}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_message" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/double_margin"
+            android:gravity="center"
+            android:text="@{inputVM.code}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_code"
+            tools:text="신규 생성된 코드의 유효시간은 최대 30분입니다." />
+        <!--android:text="신규 생성된 코드의 유효시간은 최대 30분입니다."-->
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/single_margin"
+            android:layout_marginTop="@dimen/one_half_margin"
+            android:background="@drawable/btn_partner_input_next_selected"
+            android:gravity="center"
+            android:hint="연동 코드를 입력해주세요"
+            android:padding="@dimen/single_margin"
+            android:selected="@{inputVM.btnClickEnabled}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

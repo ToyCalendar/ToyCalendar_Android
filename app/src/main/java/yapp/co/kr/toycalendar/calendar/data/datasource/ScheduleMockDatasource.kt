@@ -20,7 +20,6 @@ class ScheduleMockDatasource : ScheduleDataSource {
         }.subscribeOn(io.reactivex.schedulers.Schedulers.io())
     }
 
-
     private fun getFilteredInfo(monthList: List<String>, scheduleResult: ScheduleResult): ScheduleResult {
         val list = mutableListOf<Schedule>()
         val monthDateFormat = SimpleDateFormat("yyyy-MM")

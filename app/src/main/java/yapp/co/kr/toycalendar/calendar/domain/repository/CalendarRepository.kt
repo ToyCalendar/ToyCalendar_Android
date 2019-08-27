@@ -8,5 +8,5 @@ import yapp.co.kr.toycalendar.calendar.entity.ScheduleResult
 import java.util.*
 
 interface CalendarRepository {
-    fun getSchedules(force : Boolean, monthList : List<String>, scheduler : Scheduler, success: (scheduleResult: ScheduleResult) -> Unit, error: (throwable: Throwable) -> Unit) : Disposable
+    fun getSchedules(force: Boolean, monthList: List<String>, scheduler: Scheduler, success: (scheduleResult: ScheduleResult) -> Unit, error: (throwable: Throwable) -> Unit): Disposable
 }
