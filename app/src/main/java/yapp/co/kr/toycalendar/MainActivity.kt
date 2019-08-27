@@ -1,15 +1,12 @@
 package yapp.co.kr.toycalendar
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import yapp.co.kr.toycalendar.calendar.MonthType
-import yapp.co.kr.toycalendar.calendar.MonthViewModel
 import yapp.co.kr.toycalendar.calendar.ViewModelProvider
 import yapp.co.kr.toycalendar.calendar.entity.MonthData
 import yapp.co.kr.toycalendar.calendar.widget.MonthView
-import yapp.toycalendar.co.kr.toycalendar.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

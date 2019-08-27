@@ -15,8 +15,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import yapp.co.kr.toycalendar.R
 import yapp.co.kr.toycalendar.calendar.entity.Day
-import yapp.toycalendar.co.kr.toycalendar.R
 
 
 class DayView : LinearLayout {
@@ -53,9 +53,9 @@ class DayView : LinearLayout {
         clipToPadding = false
         clipChildren = false
         itemView = (LayoutInflater.from(context).inflate(R.layout.calendar_layout_day_view, this) as LinearLayout)
-        title = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.day_title)
-        isRelationShip = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.heart)
-        isSecretion = itemView.findViewById(yapp.toycalendar.co.kr.toycalendar.R.id.black_dot)
+        title = itemView.findViewById(R.id.day_title)
+        isRelationShip = itemView.findViewById(R.id.heart)
+        isSecretion = itemView.findViewById(R.id.black_dot)
         updateDay(day)
         disableParentsClip(itemView)
         setWillNotDraw(false) // For Draw in Viewgroup

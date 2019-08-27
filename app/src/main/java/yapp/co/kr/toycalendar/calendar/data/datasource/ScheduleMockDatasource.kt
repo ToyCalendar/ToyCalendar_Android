@@ -20,29 +20,4 @@ class ScheduleMockDatasource : ScheduleDataSource {
             it.onSuccess(result)
         }.subscribeOn(Schedulers.io())
     }
-
-    private fun getFilteredInfo(monthList: List<String>, scheduleResult: ScheduleResult): ScheduleResult {
-        val list = mutableListOf<Schedule>()
-        val monthDateFormat = SimpleDateFormat("yyyy-MM")
-        val scheduleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-
-        scheduleResult.schedules.forEach { schedule ->
-            for (s in monthList) {
-                val beforeDate = monthDateFormat.parse(s)
-                val afterDate = Calendar.getInstance().apply {
-                    time = beforeDate
-                    add(Calendar.MONTH, 1)
-                }.time
-
-                val startDate = scheduleDateFormat.parse(schedule.startDate)
-                val endDate = scheduleDateFormat.parse(schedule.endDate)
-
-                if ((endDate.after(beforeDate) && endDate.before(afterDate)) || (startDate.after(beforeDate) && startDate.before(afterDate))) {
-                    list.add(schedule)
-                    break
-                }
-            }
-        }
-        return ScheduleResult(list)
-    }
 }

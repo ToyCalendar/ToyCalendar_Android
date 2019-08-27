@@ -4,19 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="loginVM"
-            type="yapp.co.kr.toycalendar.ui.login.viewModel.LoginViewModel" />
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:context="yapp.co.kr.toycalendar.LoginActivity">
+
+        <TextView
+            android:id="@+id/btn_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="@{() -> loginVM.callAction(LoginType.GOOGLE)}"
+            android:padding="@dimen/single_margin"
+            android:text="Google Login!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -27,17 +31,15 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/btn_google"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/single_margin"
-            android:text="Google Login!"
-            android:onClick="@{() -> loginVM.callAction(`google`)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="yapp.co.kr.toycalendar.util.LoginType" />
+
+        <variable
+            name="loginVM"
+            type="yapp.co.kr.toycalendar.ui.login.viewModel.LoginViewModel" />
+
+    </data>
 </layout>
