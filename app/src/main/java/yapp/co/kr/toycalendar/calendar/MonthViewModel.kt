@@ -12,7 +12,7 @@ import yapp.co.kr.toycalendar.calendar.entity.Schedule
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MonthViewModel(val monthData : MonthData, val calendarRepository : CalendarRepository){
+class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRepository){
     constructor(monthData : MonthData) : this(monthData,CalendarRepositoryImpl.INSTANCE)
 
     private val calendar = GregorianCalendar(monthData.year, monthData.month -1, 1)
@@ -28,7 +28,7 @@ class MonthViewModel(val monthData : MonthData, val calendarRepository : Calenda
     val daysUpdateEvent: ToyRxEvent<DaysUpdatedEvent> = ToyRxEvent.create()
 
     fun getDays() {
-        GetSchedules(calendarRepository, AndroidSchedulers.mainThread())(monthFormat,monthData.monthType,{
+        getSchedules(monthFormat,monthData.monthType,{
             daysUpdateEvent.send(DaysUpdatedEvent(createDays(it)))
         },{
 
