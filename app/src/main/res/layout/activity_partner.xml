@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="loginVM"
-            type="yapp.co.kr.toycalendar.ui.login.viewModel.LoginViewModel" />
+            name="activity"
+            type="yapp.co.kr.toycalendar.ui.partner.PartnerActivity" />
+
+        <variable
+            name="partnerVM"
+            type="yapp.co.kr.toycalendar.ui.partner.PartnerViewModel" />
 
     </data>
 
@@ -16,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="yapp.co.kr.toycalendar.LoginActivity">
+        tools:context=".ui.partner.PartnerActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -27,17 +31,11 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/btn_google"
+        <FrameLayout
+            android:id="@+id/fl_partner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/single_margin"
-            android:text="Google Login!"
-            android:onClick="@{() -> loginVM.callAction(`google`)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            android:layout_height="match_parent">
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

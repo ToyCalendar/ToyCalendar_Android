@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">ToyCalendar</string>
+    <!-- ... -->
+    <string name="default_web_client_id" translatable="false">625173617633-as3vda3svgruibi8mgr031hq3pq3g8u0.apps.googleusercontent.com</string>
+
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">ToyCalendar</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+    <string name="partner_init">파트너가 생성한\\n연동 코드를 정확히 입력해주세요.</string>
     <string name="physiology_cycle">생리기간</string>
     <string name="ovulation_cycle">배란기간</string>
 </resources>
