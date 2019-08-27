@@ -8,7 +8,6 @@ import android.widget.BaseAdapter
 import androidx.recyclerview.widget.RecyclerView
 import yapp.co.kr.toycalendar.calendar.entity.Day
 import yapp.co.kr.toycalendar.calendar.widget.DayView
-import yapp.toycalendar.co.kr.toycalendar.R
 
 class MonthGridAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

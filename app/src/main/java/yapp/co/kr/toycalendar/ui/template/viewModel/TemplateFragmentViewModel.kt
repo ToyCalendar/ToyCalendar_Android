@@ -17,8 +17,6 @@ class TemplateFragmentViewModel(app: Application) : BaseViewModel(app) {
         var newIndex = tv_hello_index?.get()!! + 1
         tv_hello_text += "$newIndex"
         tv_hello_index?.set(newIndex)
-
-        callAction("setText")
     }
 
 }

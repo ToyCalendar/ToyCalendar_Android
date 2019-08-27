@@ -30,7 +30,6 @@
             android:layout_width="wrap_content"
             android:background="#FF00FF"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> templateVM.callAction(`next`)}"
             android:padding="@dimen/double_margin"
             android:text="@{`if click intent LoginActivity`}"
             tools:text="if click intent LoginActivity"
