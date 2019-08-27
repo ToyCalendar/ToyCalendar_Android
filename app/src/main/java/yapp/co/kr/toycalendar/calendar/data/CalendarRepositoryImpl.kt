@@ -8,8 +8,11 @@ import yapp.co.kr.toycalendar.calendar.entity.ScheduleResult
 import java.util.*
 
 class CalendarRepositoryImpl : CalendarRepository {
-    val mockDataSource = ScheduleMockDatasource()
+    companion object {
+        val INSTANCE by lazy { CalendarRepositoryImpl()}
+    }
 
+    val mockDataSource = ScheduleMockDatasource()
 
     override fun getSchedules(force: Boolean, monthList: List<String>, scheduler: Scheduler, success: (scheduleResult: ScheduleResult) -> Unit, error: (throwable: Throwable) -> Unit): Disposable {
         return mockDataSource.getSchedule(monthList).subscribeOn(scheduler).subscribe({

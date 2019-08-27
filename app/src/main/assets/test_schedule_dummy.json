@@ -1,82 +1,169 @@
 {
-  "schedules":[
-    {
-      "scheduleId" :1,
-      "scheduleType":"NORMAL",
-      "startDate":"2019-03-06",
-      "endDate":"2019-03-07"
-    },
-    {
-      "scheduleId" :2,
-      "scheduleType":"OVULATION_IN_SCHEDULE",
-      "startDate":"2019-03-06",
-      "endDate":"2019-03-11"
-    },
-    {
-      "scheduleId" :3,
-      "scheduleType":"OVULATION",
-      "startDate":"2019-03-09",
-      "endDate":"2019-03-09"
-    },
-    {
-      "scheduleId" :4,
-      "scheduleType":"PHYSIOLOGY_IN_SCHEDULE",
-      "startDate":"2019-02-28",
-      "endDate":"2019-03-03"
-    },
-    {
-      "scheduleId" :5,
-      "scheduleType":"PHYSIOLOGY",
-      "startDate":"2019-02-28",
-      "endDate":"2019-03-03"
-    },
-    {
-      "scheduleId" :6,
-      "scheduleType":"OVULATION_IN_SCHEDULE",
-      "startDate":"2019-02-06",
-      "endDate":"2019-02-11"
-    },
-    {
-      "scheduleId" :7,
-      "scheduleType":"OVULATION",
-      "startDate":"2019-02-09",
-      "endDate":"2019-02-09"
-    },
-    {
-      "scheduleId" :8,
-      "scheduleType":"PHYSIOLOGY_IN_SCHEDULE",
-      "startDate":"2019-01-28",
-      "endDate":"2019-02-03"
-    },
-    {
-      "scheduleId" :9,
-      "scheduleType":"PHYSIOLOGY",
-      "startDate":"2019-01-28",
-      "endDate":"2019-02-03"
-    },
-    {
-      "scheduleId" :10,
-      "scheduleType":"OVULATION_IN_SCHEDULE",
-      "startDate":"2019-01-06",
-      "endDate":"2019-01-11"
-    },
-    {
-      "scheduleId" :11,
-      "scheduleType":"OVULATION",
-      "startDate":"2019-01-09",
-      "endDate":"2019-01-09"
-    },
-    {
-      "scheduleId" :12,
-      "scheduleType":"PHYSIOLOGY_IN_SCHEDULE",
-      "startDate":"2018-12-28",
-      "endDate":"2019-01-03"
-    },
-    {
-      "scheduleId" :13,
-      "scheduleType":"PHYSIOLOGY",
-      "startDate":"2018-12-28",
-      "endDate":"2019-01-03"
-    }
-  ]
+  "code" : 200,
+  "message" : "성공잼",
+  "data" : {
+    "mySelf" : [
+      {
+        "date" : "20190504",
+        "sexYn" : true, // - 섹스 여부
+        "deviceUseYn" : false, // true: 사용, false: 미사용 - 기구 사용 여부
+        "secretInfoList" : [ // 있는 것만 체크
+          {
+            "secretInfoCode" : "code", // 민감정보 코드
+            "secretInfoName" : "건조" // 민감정보 내용 (많음, 치즈 등)
+          }
+        ],
+        "physiologyCycleYn": true, // true : 생리주기 있음 false: 없음 - 생리주기여부
+        "physiologyStartYn": true, // true : 생리 시작일 (둥글게 표시) - 생리시작일여부
+        "physiologyEndYn": false, // true : 생리 종료일 (둥글게 표시) - 생리종료일여부
+        "ovulationCycleYn":false, //nullable - 배란주기 여부
+        "ovulationDayYn": false, //nullable - 배란일 여부
+        "ovulationStartYn": false, //- 배란 시작 여부 (둥글게 표시)
+        "ovulationEndYn": false, //- 배란 종료 여부 (둥글게 표시)
+        "dayPoint": 1 // 현재 : 0, 과거 : 1, 미래 : 2 - 시점
+      },
+      {
+        "date" : "20190505",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190506",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190507",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190508",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190509",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": false,
+        "physiologyEndYn": true,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190528",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": false,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": true,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190529",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": false,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":true,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190530",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": false,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":true,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      },
+      {
+        "date" : "20190531",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": false,
+        "physiologyStartYn": false,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":true,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      }
+    ],
+    "partner" : [
+      {
+        "date" : "20190505",
+        "sexYn" : true,
+        "deviceUseYn" : false,
+        "secretInfoList" : [],
+        "physiologyCycleYn": true,
+        "physiologyStartYn": true,
+        "physiologyEndYn": false,
+        "ovulationCycleYn":false,
+        "ovulationDayYn": false,
+        "ovulationStartYn": false,
+        "ovulationEndYn": false,
+        "dayPoint": 1
+      }
+    ]
+  }
 }
