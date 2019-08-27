@@ -38,6 +38,9 @@ class MonthView : LinearLayout, BaseCalendar {
 
 
     private fun initViews(context: Context, attrs: AttributeSet?) {
+        clipToPadding = false
+        clipChildren = false
+
         attrs?.let {
 
         }

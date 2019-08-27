@@ -1,6 +1,8 @@
 package yapp.co.kr.toycalendar.calendar
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import yapp.co.kr.toycalendar.calendar.data.CalendarRepositoryImpl
 import yapp.co.kr.toycalendar.calendar.domain.repository.CalendarRepository
 import yapp.co.kr.toycalendar.calendar.domain.usecase.GetSchedules
@@ -10,7 +12,7 @@ import yapp.co.kr.toycalendar.calendar.entity.Schedule
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRepository){
+class MonthViewModel(val monthData : MonthData, val calendarRepository : CalendarRepository){
     constructor(monthData : MonthData) : this(monthData,CalendarRepositoryImpl.INSTANCE)
 
     private val calendar = GregorianCalendar(monthData.year, monthData.month -1, 1)
@@ -18,14 +20,19 @@ class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRep
 
     private val getSchedules = GetSchedules(calendarRepository, AndroidSchedulers.mainThread())
 
+    private var disposables: CompositeDisposable? = null
+    private fun Disposable.addToDisposables() {
+        (disposables ?: CompositeDisposable().apply { disposables = this }).add(this)
+    }
+
     val daysUpdateEvent: ToyRxEvent<DaysUpdatedEvent> = ToyRxEvent.create()
 
     fun getDays() {
-        getSchedules(monthFormat,monthData.monthType,{
+        GetSchedules(calendarRepository, AndroidSchedulers.mainThread())(monthFormat,monthData.monthType,{
             daysUpdateEvent.send(DaysUpdatedEvent(createDays(it)))
         },{
 
-        })
+        }).addToDisposables()
     }
 
     private fun createDays(schedules: List<Schedule?>?): List<Day> {
@@ -80,10 +87,15 @@ class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRep
         result.physiologyStartYn = schedule.physiologyStartYn?: false
         result.physiologyEndYn = schedule.physiologyEndYn?: false
         result.ovulationDayYn = schedule.ovulationDayYn?: false
+        result.ovulationCycleYn = schedule.ovulationCycleYn?: false
         result.ovulationStartYn = schedule.ovulationStartYn?: false
         result.ovulationEndYn = schedule.ovulationEndYn?: false
 
         return result
+    }
+
+    fun onCleared(){
+        disposables?.dispose()
     }
 
 }

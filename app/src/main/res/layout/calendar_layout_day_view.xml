@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:padding="10dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- android:background="?android:attr/selectableItemBackground" setOnclickListener와 함꼐 ripple울 보여주고싶을 떄넣어주자 -->
 
     <TextView
         android:id="@+id/day_title"
         tools:text="35"
-        android:padding="3dp"
         android:textSize="17sp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
