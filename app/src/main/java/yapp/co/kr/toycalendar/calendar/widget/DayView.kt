@@ -20,26 +20,6 @@ import yapp.co.kr.toycalendar.calendar.entity.Day
 
 
 class DayView : LinearLayout {
-    private lateinit var title: TextView
-    private lateinit var isRelationShip: ImageView
-    private lateinit var isSecretion: ImageView
-    private lateinit var itemView: LinearLayout
-    private lateinit var mDay: Day
-    private var circleSize = 0f
-    private var type1Color = Paint().apply {
-        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11F, context.resources.displayMetrics)
-        color = Color.parseColor("#ff5354")
-
-    }
-    private var type2Color = Paint().apply {
-        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11F, context.resources.displayMetrics)
-        color = Color.parseColor("#6147fb")
-    }
-    private var type3Color = Paint().apply {
-        color = Color.parseColor("#000000")
-    }
 
     constructor(context: Context, day: Day) : this(context, null, day)
 
@@ -49,15 +29,34 @@ class DayView : LinearLayout {
         initViews(context, attrs, day)
     }
 
+    private lateinit var title: TextView
+    private lateinit var isRelationShip: ImageView
+    private lateinit var isSecretion: ImageView
+    private lateinit var itemView: LinearLayout
+    private lateinit var mDay: Day
+    private var circleSize = 0f
+    private var ovulationColor = Paint().apply {
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11F, context.resources.displayMetrics)
+        color = ContextCompat.getColor(context,R.color.calendar_day_ovulation_background)
+
+    }
+    private var physiologyColor = Paint().apply {
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11F, context.resources.displayMetrics)
+        color = ContextCompat.getColor(context,R.color.calendar_day_physiology_background)
+    }
+    private var selectedColor = Paint().apply {
+        color = ContextCompat.getColor(context,R.color.calendar_day_selected_background)
+    }
+
+
     private fun initViews(context: Context, attrs: AttributeSet?, day: Day) {
-        clipToPadding = false
-        clipChildren = false
         itemView = (LayoutInflater.from(context).inflate(R.layout.calendar_layout_day_view, this) as LinearLayout)
         title = itemView.findViewById(R.id.day_title)
         isRelationShip = itemView.findViewById(R.id.heart)
         isSecretion = itemView.findViewById(R.id.black_dot)
         updateDay(day)
-        disableParentsClip(itemView)
         setWillNotDraw(false) // For Draw in Viewgroup
     }
 
@@ -97,48 +96,40 @@ class DayView : LinearLayout {
         if (mDay.physiologyStartYn || mDay.physiologyEndYn || mDay.physiologyCycleYn || mDay.ovulationStartYn || mDay.ovulationEndYn || mDay.ovulationCycleYn || mDay.isClicked) {
             title.setTextColor(ContextCompat.getColor(context, R.color.white))
             when {
+                //생리
                 mDay.physiologyStartYn -> {
-                    canvas?.drawText("생리기간",width / 2f,title.top-15.toFloat(),type1Color)
-                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
-                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type1Color)
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, ovulationColor)
+                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), ovulationColor)
                 }
                 mDay.physiologyEndYn -> {
-                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type1Color)
-                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type1Color)
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, ovulationColor)
+                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), ovulationColor)
                 }
                 mDay.physiologyCycleYn -> {
-                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), type1Color)
+                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), ovulationColor)
                 }
+
+                // 배란
                 mDay.ovulationStartYn -> {
-                    canvas?.drawText("배란기간",width / 2f,title.top-15.toFloat(),type2Color)
-                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
-                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), type2Color)
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, physiologyColor)
+                    canvas?.drawRect(Rect(width / 2, title.top, width, title.bottom), physiologyColor)
                 }
                 mDay.ovulationEndYn -> {
-                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, type2Color)
-                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), type2Color)
+                    canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize, physiologyColor)
+                    canvas?.drawRect(Rect(0, title.top, width / 2, title.bottom), physiologyColor)
                 }
                 mDay.ovulationCycleYn -> {
-                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), type2Color)
+                    canvas?.drawRect(Rect(0, title.top, width, title.bottom), physiologyColor)
                 }
             }
 
             if (mDay.isClicked) {
-                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize - 10, type3Color)
+                canvas?.drawCircle(width / 2.toFloat(), (title.top + title.bottom) / 2.toFloat(), circleSize - 10, selectedColor)
             }
         }else{
             title.setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
 
-    }
-    fun disableParentsClip(view: View) {
-        var view = view
-        while (view.parent != null && view.parent is ViewGroup) {
-            val viewGroup = view.parent as ViewGroup
-            viewGroup.clipChildren = false
-            viewGroup.clipToPadding = false
-            view = viewGroup
-        }
     }
 }

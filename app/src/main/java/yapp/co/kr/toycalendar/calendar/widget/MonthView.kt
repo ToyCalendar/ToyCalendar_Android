@@ -38,12 +38,6 @@ class MonthView : LinearLayout, BaseCalendar {
 
 
     private fun initViews(context: Context, attrs: AttributeSet?) {
-        clipToPadding = false
-        clipChildren = false
-
-        attrs?.let {
-
-        }
         LayoutInflater.from(context).inflate(R.layout.calendar_layout_month_view, this)
         monthGridAdapter = MonthGridAdapter(context)
         headerTitle = findViewById(R.id.header_title)
