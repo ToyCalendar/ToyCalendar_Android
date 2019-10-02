@@ -11,4 +11,8 @@
     <dimen name="double_margin">32dp</dimen>
     <dimen name="triple_margin">48dp</dimen>
     <dimen name="fourth_margin">64dp</dimen>
+
+    <!-- 캘린더 -->
+    <dimen name="calendar_circle_line_width">2dp</dimen>
+    <dimen name="calendar_circle_width">15dp</dimen>
 </resources>

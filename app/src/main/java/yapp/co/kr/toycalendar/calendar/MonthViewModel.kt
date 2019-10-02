@@ -68,8 +68,10 @@ class MonthViewModel(val monthData : MonthData, calendarRepository : CalendarRep
         //create After EmptyDays
         list.last().dayOfWeek.let {
             for (i in 0 until 7 - it) list.add(Day().apply{
-                if(list[list.lastIndex].physiologyStartYn || list[list.lastIndex].physiologyCycleYn) physiologyCycleYn = true
-                if(list[list.lastIndex].ovulationStartYn || list[list.lastIndex].ovulationCycleYn) ovulationCycleYn = true
+                //TODO 달력의 마지막 날에 생리나 배란이 겹쳤을 때 선을 그어주기 위한 코드인데, 지금 일단 선은 개발하지 않으니 스킵
+
+//                if(list[list.lastIndex].physiologyStartYn || list[list.lastIndex].physiologyCycleYn) physiologyCycleYn = true
+//                if(list[list.lastIndex].ovulationStartYn || list[list.lastIndex].ovulationCycleYn) ovulationCycleYn = true
             })
         }
         return list

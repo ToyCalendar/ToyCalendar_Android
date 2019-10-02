@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -38,31 +36,21 @@ class DayView : LinearLayout {
     private lateinit var itemView: LinearLayout
     private lateinit var mDay: Day
 
-    private val rect= Rect()
-    private var circleSize = 0f
+    private val rect = Rect()
+    private var circleSize = resources.getDimension(R.dimen.calendar_circle_width)
     private var ovulationColor = Paint().apply {
-        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-        textSize = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP,
-            11F,
-            context.resources.displayMetrics
-        )
+        style = Paint.Style.STROKE
+        strokeWidth = resources.getDimension(R.dimen.calendar_circle_line_width)
         color = ContextCompat.getColor(context, R.color.calendar_day_ovulation_background)
-
     }
     private var physiologyColor = Paint().apply {
-        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-        textSize = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP,
-            11F,
-            context.resources.displayMetrics
-        )
+        style = Paint.Style.STROKE
+        strokeWidth = resources.getDimension(R.dimen.calendar_circle_line_width)
         color = ContextCompat.getColor(context, R.color.calendar_day_physiology_background)
     }
     private var selectedColor = Paint().apply {
         color = ContextCompat.getColor(context, R.color.calendar_day_selected_background)
     }
-
 
     private fun initViews(context: Context, attrs: AttributeSet?, day: Day) {
         itemView = (LayoutInflater.from(context).inflate(
@@ -107,63 +95,37 @@ class DayView : LinearLayout {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        circleSize = (title.bottom - title.top) / 2.toFloat()
 
         if (mDay.physiologyStartYn || mDay.physiologyEndYn || mDay.physiologyCycleYn || mDay.ovulationStartYn || mDay.ovulationEndYn || mDay.ovulationCycleYn || mDay.isClicked) {
-            title.setTextColor(ContextCompat.getColor(context, R.color.white))
+
             when {
                 //생리
-                mDay.physiologyStartYn -> {
-                    canvas?.drawCircle(0f, 0f, width / 2.toFloat(), ovulationColor)
+                mDay.physiologyStartYn || mDay.physiologyEndYn || mDay.physiologyCycleYn -> {
                     canvas?.drawCircle(
                         width / 2.toFloat(),
                         (title.top + title.bottom) / 2.toFloat(),
                         circleSize,
-                        ovulationColor
+                        physiologyColor
                     )
-                    rect.set(width / 2, title.top, width, title.bottom)
-                    canvas?.drawRect(rect, ovulationColor)
-                }
-                mDay.physiologyEndYn -> {
-                    canvas?.drawCircle(
-                        width / 2.toFloat(),
-                        (title.top + title.bottom) / 2.toFloat(),
-                        circleSize,
-                        ovulationColor
-                    )
+                    title.setTextColor(physiologyColor.color)
 
-                    rect.set(0, title.top, width / 2, title.bottom)
-                    canvas?.drawRect(rect, ovulationColor)
-                }
-                mDay.physiologyCycleYn -> {
-                    rect.set(width / 2, title.top, width, title.bottom)
-                    canvas?.drawRect(rect, ovulationColor)
                 }
 
+                //TODO 생리예정이 아니라 생리중일 떈 색칠해야하니 잠시 대기
+
+//                    rect.set(width / 2, title.top, width, title.bottom)
+//                    canvas?.drawRect(rect, ovulationColor)
+//                    rect.set(0, title.top, width / 2, title.bottom)
+//                    canvas?.drawRect(rect, ovulationColor)
                 // 배란
-                mDay.ovulationStartYn -> {
+                mDay.ovulationStartYn || mDay.ovulationEndYn || mDay.ovulationCycleYn -> {
                     canvas?.drawCircle(
                         width / 2.toFloat(),
                         (title.top + title.bottom) / 2.toFloat(),
                         circleSize,
-                        physiologyColor
+                        ovulationColor
                     )
-                    rect.set(width / 2, title.top, width, title.bottom)
-                    canvas?.drawRect(rect, physiologyColor)
-                }
-                mDay.ovulationEndYn -> {
-                    canvas?.drawCircle(
-                        width / 2.toFloat(),
-                        (title.top + title.bottom) / 2.toFloat(),
-                        circleSize,
-                        physiologyColor
-                    )
-                    rect.set(0, title.top, width / 2, title.bottom)
-                    canvas?.drawRect(rect, physiologyColor)
-                }
-                mDay.ovulationCycleYn -> {
-                    rect.set(0, title.top, width, title.bottom)
-                    canvas?.drawRect(rect, physiologyColor)
+                    title.setTextColor(ovulationColor.color)
                 }
             }
 
