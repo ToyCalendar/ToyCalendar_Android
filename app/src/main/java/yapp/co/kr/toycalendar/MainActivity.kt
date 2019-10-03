@@ -13,16 +13,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val monthView = findViewById<MonthView>(R.id.month_view)
-        monthView.setViewModel(ViewModelProvider().getOrCreate(MonthData(2019, 5, MonthType.MyCalendar)))
-        monthView.setOnDayClickListener{
-            Toast.makeText(applicationContext,"${it.day}" +
-                    "${it.ovulationCycleYn}"+
-                    "${it.ovulationDayYn}"+
-                    "${it.ovulationEndYn}"+
-                    "${it.ovulationStartYn}"+
-                    "${it.physiologyCycleYn}"+
-                    "${it.physiologyEndYn}"+
-                    "${it.physiologyStartYn}",Toast.LENGTH_SHORT).show()
+        monthView.setViewModel(
+            ViewModelProvider().getOrCreate(
+                MonthData(
+                    2019,
+                    5,
+                    MonthType.MyCalendar
+                )
+            )
+        )
+        monthView.setOnDayClickListener {
+            Toast.makeText(
+                applicationContext, "${it.day}" +
+                        "${it.type}", Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

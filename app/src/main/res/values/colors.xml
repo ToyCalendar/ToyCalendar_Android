@@ -15,6 +15,7 @@
 
     <!-- 배란 -->
     <color name="calendar_day_ovulation_background">#a7e3ff</color>
+    <color name="calendar_day_ovulation_background_with_opacity">#33a7e3ff</color>
     <color name="calendar_day_ovulation_text">#2dbaff</color>
 
     <!-- 생리 -->
@@ -23,6 +24,8 @@
 
     <color name="calendar_day_selected_background">#26223d</color>
     <color name="calendar_day_selected_text">#ffffff</color>
+    <color name="calendar_month_text">#222222</color>
+    <color name="calendar_day_text">#444444</color>
 
     <!-- Calendar Color END-->
 
