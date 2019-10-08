@@ -19,13 +19,7 @@ data class Schedule(
         @Expose @SerializedName("sexYn") val sexYn: Boolean?,
         @Expose @SerializedName("deviceUseYn") val deviceUseYn: Boolean?,
         @Expose @SerializedName("secretInfoList") val secretInfoList: List<SecretInfo?>?,
-        @Expose @SerializedName("physiologyCycleYn") val physiologyCycleYn: Boolean?,
-        @Expose @SerializedName("physiologyStartYn") val physiologyStartYn: Boolean?,
-        @Expose @SerializedName("physiologyEndYn") val physiologyEndYn: Boolean?,
-        @Expose @SerializedName("ovulationCycleYn") val ovulationCycleYn: Boolean?,
-        @Expose @SerializedName("ovulationDayYn") val ovulationDayYn: Boolean?,
-        @Expose @SerializedName("ovulationStartYn") val ovulationStartYn: Boolean?,
-        @Expose @SerializedName("ovulationEndYn") val ovulationEndYn: Boolean?,
+        @Expose @SerializedName("dayType") val dayType: DayType?,
         @Expose @SerializedName("dayPoint") val dayPoint: Int?
 )
 

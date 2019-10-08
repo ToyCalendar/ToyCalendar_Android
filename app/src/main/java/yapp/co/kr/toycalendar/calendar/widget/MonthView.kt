@@ -36,14 +36,7 @@ class MonthView : LinearLayout, BaseCalendar {
         (disposables ?: CompositeDisposable().apply { disposables = this }).add(this)
     }
 
-
     private fun initViews(context: Context, attrs: AttributeSet?) {
-        clipToPadding = false
-        clipChildren = false
-
-        attrs?.let {
-
-        }
         LayoutInflater.from(context).inflate(R.layout.calendar_layout_month_view, this)
         monthGridAdapter = MonthGridAdapter(context)
         headerTitle = findViewById(R.id.header_title)
@@ -72,7 +65,6 @@ class MonthView : LinearLayout, BaseCalendar {
             it.getDays()
         }
     }
-
 
     override fun setOnDayClickListener(onClick: (Day) -> Unit) {
         monthGridAdapter?.onDayClickedEvent?.subscribe {
