@@ -7,26 +7,92 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/activity_background"
         android:fitsSystemWindows="true"
         tools:context="yapp.co.kr.toycalendar.LoginActivity">
 
-        <TextView
-            android:id="@+id/btn_google"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:onClick="@{() -> loginVM.callAction(LoginType.GOOGLE)}"
-            android:padding="@dimen/single_margin"
-            android:text="Google Login!"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent">
+
+            <include
+                layout="@layout/layout_login_button"
+                tools:type="@{LoginType.KAKAO}"
+                tools:vm="@{loginVM}" />
+
+            <include
+                layout="@layout/layout_login_button"
+                tools:type="@{LoginType.FACEBOOK}"
+                tools:vm="@{loginVM}" />
+
+            <include
+                layout="@layout/layout_login_button"
+                tools:type="@{LoginType.GOOGLE}"
+                tools:vm="@{loginVM}" />
+
+            <include
+                layout="@layout/layout_login_button"
+                tools:type="@{LoginType.DEFAULT}"
+                tools:vm="@{loginVM}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/single_margin"
+                android:layout_marginBottom="@dimen/double_margin"
+                android:text="가입하기를 선택하시면, 서비스 이용약관\n개인정보 처리방침에 동의하는 것으로 간주됩니다."
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="더 똑똑하고\n자유로운 생활을 위한,"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_next" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/three_quarter_margin"
+            android:text="Calendar"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sub_title" />
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/half_margin"
+            android:padding="@dimen/single_margin"
+            android:text="다음에 사용할게요"
+            android:textColor="@color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/activity_background"
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.appcompat.widget.Toolbar>

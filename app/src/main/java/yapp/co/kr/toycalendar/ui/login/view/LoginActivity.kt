@@ -75,8 +75,8 @@ class LoginActivity : BaseActivity() {
                 LoginType.FACEBOOK -> {
 
                 }
-                LoginType.LINE -> TODO()
                 LoginType.KAKAO -> TODO()
+                LoginType.DEFAULT -> TODO()
                 null -> {
                 }
             }
@@ -99,7 +99,7 @@ class LoginActivity : BaseActivity() {
                 // sign-in flow using the back button. Otherwise check
                 // response.getError().getErrorCode() and handle the error.
                 // ...
-                System.out.println(response?.error?.errorCode)
+                println(response?.error?.errorCode)
             }
         }
     }

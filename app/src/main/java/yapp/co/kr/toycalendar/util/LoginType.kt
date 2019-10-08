@@ -10,5 +10,5 @@ package yapp.co.kr.toycalendar.util
 // 4. 제약을 거는 느낌
 
 enum class LoginType {
-    GOOGLE, LINE, FACEBOOK, KAKAO
+    GOOGLE, FACEBOOK, KAKAO, DEFAULT
 }

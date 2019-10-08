@@ -30,7 +30,6 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
     }
 
     fun callAction(action: LoginType) {
-        loginAction.value = action
         loginObservable.set(action)
 
         when (action) {
@@ -41,11 +40,11 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
                     // not signed in
                 }
             }
-            LoginType.LINE -> TODO()
             LoginType.FACEBOOK -> TODO()
             LoginType.KAKAO -> TODO()
+            LoginType.DEFAULT -> TODO()
         }
 
-        this.loginAction.value = action
+        loginAction.value = action
     }
 }
