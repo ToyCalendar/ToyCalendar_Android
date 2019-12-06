@@ -4,11 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
+import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity : AppCompatActivity() {
     abstract val layoutRes: Int
     abstract val isUseDatabinding: Boolean
     lateinit var dialog: DefaultDialog
+
+    val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     // fragment가 있을 경우 transacion 진행
-    fun transaction(targetId : Int, newFragment: BaseFragment) {
+    fun transaction(targetId: Int, newFragment: BaseFragment) {
         val transaction = supportFragmentManager.beginTransaction()
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -70,5 +73,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // Commit the transaction
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        compositeDisposable.dispose()
     }
 }

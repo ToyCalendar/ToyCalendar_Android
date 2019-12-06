@@ -42,9 +42,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/single_margin"
                 android:layout_marginBottom="@dimen/double_margin"
+                android:gravity="center"
                 android:text="가입하기를 선택하시면, 서비스 이용약관\n개인정보 처리방침에 동의하는 것으로 간주됩니다."
                 android:textColor="@color/white" />
 
@@ -81,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/half_margin"
+            android:onClick="@{() -> loginVM.callAction(LoginType.NONE)}"
             android:padding="@dimen/single_margin"
             android:text="다음에 사용할게요"
             android:textColor="@color/white"
@@ -89,10 +90,10 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/activity_background"
+            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent">
 
         </androidx.appcompat.widget.Toolbar>

@@ -25,6 +25,9 @@ fun setLoginBtnBackground(view : ConstraintLayout, type: LoginType) {
         LoginType.DEFAULT -> {
             view.setBackgroundResource(R.drawable.btn_login_button_default)
         }
+        else -> {   // NONE
+
+        }
     }
 }
 
@@ -42,6 +45,9 @@ fun setLoginLogo(view : ImageView, type: LoginType) {
         }
         LoginType.DEFAULT -> {
             view.visibility = View.GONE
+        }
+        else -> {   // NONE
+
         }
     }
 }
@@ -67,6 +73,9 @@ fun setLoginText(view : TextView, type: LoginType) {
         LoginType.DEFAULT -> {
             view.setTextColor(ContextCompat.getColor(ctx, R.color.btn_login_button_text_color_default))
             sb.append("이메일로 가입하기")
+        }
+        else -> {   // NONE
+
         }
     }
 

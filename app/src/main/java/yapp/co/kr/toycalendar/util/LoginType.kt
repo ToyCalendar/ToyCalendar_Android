@@ -9,6 +9,7 @@ package yapp.co.kr.toycalendar.util
 // 3. when문의 경우 else 예외처리를 하지 않아도됨 (Sealed class 느낌)
 // 4. 제약을 거는 느낌
 
+// NONE : GUEST MODE
 enum class LoginType {
-    GOOGLE, FACEBOOK, KAKAO, DEFAULT
+    GOOGLE, FACEBOOK, KAKAO, DEFAULT, NONE
 }
