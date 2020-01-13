@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/half_margin"
-            android:onClick="@{() -> loginVM.callAction(LoginType.NONE)}"
+            android:onClick="@{() -> loginVM.callAction(LoginType.GUEST)}"
             android:padding="@dimen/single_margin"
             android:text="다음에 사용할게요"
             android:textColor="@color/white"

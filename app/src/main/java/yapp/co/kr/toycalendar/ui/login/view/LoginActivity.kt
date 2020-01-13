@@ -157,7 +157,7 @@ class LoginActivity : BaseActivity(), KakaoInterface {
                                     .setIsSmartLockEnabled(false)
                                     .build(), RC_SIGN_IN)
                 }
-                LoginType.NONE -> {
+                LoginType.GUEST -> {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }

@@ -29,7 +29,6 @@
         <activity
             android:name=".ui.partner.PartnerActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
 
         <!-- 3 -->

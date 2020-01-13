@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/one_half_margin"
         android:layout_marginVertical="@dimen/single_quarter_margin"
-        android:background="@{type}"
+        android:background="@{type.backgroundResourceId}"
         android:onClick="@{() -> vm.callAction(type)}"
         android:paddingVertical="@dimen/half_margin">
 
@@ -17,13 +17,11 @@
             android:id="@+id/img_logo"
             android:layout_width="@dimen/one_half_margin"
             android:layout_height="@dimen/one_half_margin"
-
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@{type.logoResourceId}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/left_guide_line"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_foreground" />
-<!--        android:src="@{type}"-->
 
         <TextView
             android:layout_width="wrap_content"

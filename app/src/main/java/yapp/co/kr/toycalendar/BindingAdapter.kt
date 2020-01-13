@@ -9,48 +9,58 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import yapp.co.kr.toycalendar.util.LoginType
 
-// LoginActivity
 @BindingAdapter("android:background")
-fun setLoginBtnBackground(view : ConstraintLayout, type: LoginType) {
-    when (type) {
-        LoginType.KAKAO -> {
-            view.setBackgroundResource(R.drawable.btn_login_button_kakao)
-        }
-        LoginType.FACEBOOK -> {
-            view.setBackgroundResource(R.drawable.btn_login_button_facebook)
-        }
-        LoginType.GOOGLE -> {
-            view.setBackgroundResource(R.drawable.btn_login_button_google)
-        }
-        LoginType.DEFAULT -> {
-            view.setBackgroundResource(R.drawable.btn_login_button_default)
-        }
-        else -> {   // NONE
-
-        }
-    }
+fun setBackground(view: View, resource: Int){
+    view.setBackgroundResource(resource)
 }
 
 @BindingAdapter("android:src")
-fun setLoginLogo(view : ImageView, type: LoginType) {
-    when (type) {
-        LoginType.KAKAO -> {
-            view.setImageResource(R.drawable.btn_login_button_kakao)
-        }
-        LoginType.FACEBOOK -> {
-            view.setImageResource(R.drawable.btn_login_button_facebook)
-        }
-        LoginType.GOOGLE -> {
-            view.setImageResource(R.drawable.btn_login_button_google)
-        }
-        LoginType.DEFAULT -> {
-            view.visibility = View.GONE
-        }
-        else -> {   // NONE
-
-        }
-    }
+fun setSrc(view: View, resource: Int){
+    view.setBackgroundResource(resource)
 }
+
+// // LoginActivity
+// @BindingAdapter("android:background")
+// fun setLoginBtnBackground(view : ConstraintLayout, type: LoginType) {
+//     when (type) {
+//         LoginType.KAKAO -> {
+//             view.setBackgroundResource(R.drawable.btn_login_button_kakao)
+//         }
+//         LoginType.FACEBOOK -> {
+//             view.setBackgroundResource(R.drawable.btn_login_button_facebook)
+//         }
+//         LoginType.GOOGLE -> {
+//             view.setBackgroundResource(R.drawable.btn_login_button_google)
+//         }
+//         LoginType.DEFAULT -> {
+//             view.setBackgroundResource(R.drawable.btn_login_button_default)
+//         }
+//         else -> {   // GUEST
+//
+//         }
+//     }
+// }
+//
+// @BindingAdapter("android:src")
+// fun setLoginLogo(view : ImageView, type: LoginType) {
+//     when (type) {
+//         LoginType.KAKAO -> {
+//             view.setImageResource(R.drawable.btn_login_button_kakao)
+//         }
+//         LoginType.FACEBOOK -> {
+//             view.setImageResource(R.drawable.btn_login_button_facebook)
+//         }
+//         LoginType.GOOGLE -> {
+//             view.setImageResource(R.drawable.btn_login_button_google)
+//         }
+//         LoginType.DEFAULT -> {
+//             view.visibility = View.GONE
+//         }
+//         else -> {   // GUEST
+//
+//         }
+//     }
+// }
 
 @BindingAdapter("android:text")
 fun setLoginText(view : TextView, type: LoginType) {
@@ -74,7 +84,7 @@ fun setLoginText(view : TextView, type: LoginType) {
             view.setTextColor(ContextCompat.getColor(ctx, R.color.btn_login_button_text_color_default))
             sb.append("이메일로 가입하기")
         }
-        else -> {   // NONE
+        else -> {   // GUEST
 
         }
     }

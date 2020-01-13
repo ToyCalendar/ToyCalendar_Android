@@ -24,7 +24,7 @@ enum class DayType{
     OVULATION_END,
 }
 /*
-    NONE,// 아무날도 아님
+    GUEST,// 아무날도 아님
     PHYSIOLOGY, // 생리일
     PHYSIOLOGY_IN_SCHEDULE, // 생리 예정일
     OVULATION, // 배란일
