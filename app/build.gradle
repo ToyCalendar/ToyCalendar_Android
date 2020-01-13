@@ -81,8 +81,11 @@ dependencies {
     // https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md
     implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
     implementation 'com.google.firebase:firebase-auth:16.2.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.41.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     // implementation 'com.facebook.android:facebook-login:4.41.0'
+
+    implementation 'com.kakao.sdk:usermgmt:1.17.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

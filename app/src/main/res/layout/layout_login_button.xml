@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/one_half_margin"
+        android:layout_marginVertical="@dimen/single_quarter_margin"
+        android:background="@{type.backgroundResourceId}"
+        android:onClick="@{() -> vm.callAction(type)}"
+        android:paddingVertical="@dimen/half_margin">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="@dimen/one_half_margin"
+            android:layout_height="@dimen/one_half_margin"
+            android:src="@{type.logoResourceId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/left_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/img_logo"
+            app:layout_constraintRight_toLeftOf="@+id/right_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="구글로 시작하기" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="72dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="79dp"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="yapp.co.kr.toycalendar.util.LoginType" />
+
+        <variable
+            name="type"
+            type="LoginType" />
+
+        <variable
+            name="vm"
+            type="yapp.co.kr.toycalendar.ui.login.viewModel.LoginViewModel" />
+
+    </data>
+</layout>

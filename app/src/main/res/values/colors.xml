@@ -11,6 +11,17 @@
     <color name="btn_partner_input_next_enabled">#6247fb</color>
     <color name="btn_partner_input_next_disabled">#979ea8</color>
 
+    <!-- LoginActivity -->
+    <color name="activity_background">#9864FF</color>
+    <color name="btn_login_button_background_kakao">#FFCD00</color>
+    <color name="btn_login_button_text_color_kakao">#3C1E1E</color>
+    <color name="btn_login_button_background_facebook">#0075fb</color>
+    <color name="btn_login_button_text_color_facebook">#FFFFFF</color>
+    <color name="btn_login_button_background_google">#FFFFFF</color>
+    <color name="btn_login_button_text_color_google">#444444</color>
+    <color name="btn_login_button_background_default">#00FFFFFF</color>
+    <color name="btn_login_button_text_color_default">#FFFFFF</color>
+
     <!-- Calendar Color START-->
 
     <!-- 배란 -->
